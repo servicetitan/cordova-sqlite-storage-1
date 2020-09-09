@@ -979,6 +979,7 @@ var mytests = function() {
             // ERROR RESULT (NOT EXPECTED):
             expect(false).toBe(true);
             expect(e).toBeDefined();
+            expect(e.message).toBe('--');
 
             // Close (plugin only) & finish:
             (isWebSql) ? done() : createdb.close(done, done);
@@ -990,6 +991,7 @@ var mytests = function() {
                 // ERROR RESULT (NOT EXPECTED):
                 expect(false).toBe(true);
                 expect(e).toBeDefined();
+                expect(e.message).toBe('--');
               });
             }
           });
@@ -1016,6 +1018,7 @@ var mytests = function() {
               // ERROR RESULT (NOT EXPECTED):
               expect(false).toBe(true);
               expect(e).toBeDefined();
+              expect(e.message).toBe('--');
 
               // Close (plugin only) & finish:
               (isWebSql) ? done() : db.close(done, done);
@@ -1024,6 +1027,8 @@ var mytests = function() {
         }, MYTIMEOUT);
 
         it(suiteName + 'ALTER TABLE RENAME test', function(done) {
+          if (isWebSql && isAppleMobileOS) pending('TBD SKIP for (WebKit) Web SQL on iOS');
+
           var dbname = 'ALTER-TABLE-RENAME-test.db';
           var createdb = openDatabase(dbname, '1.0', 'Test', DEFAULT_SIZE);
 
@@ -1037,6 +1042,7 @@ var mytests = function() {
             // ERROR RESULT (NOT EXPECTED):
             expect(false).toBe(true);
             expect(e).toBeDefined();
+            expect(e.message).toBe('--');
 
             // Close (plugin only) & finish:
             (isWebSql) ? done() : createdb.close(done, done);
@@ -1048,6 +1054,7 @@ var mytests = function() {
                 // ERROR RESULT (NOT EXPECTED):
                 expect(false).toBe(true);
                 expect(e).toBeDefined();
+                expect(e.message).toBe('--');
               });
             }
           });
@@ -1072,6 +1079,7 @@ var mytests = function() {
               // ERROR RESULT (NOT EXPECTED):
               expect(false).toBe(true);
               expect(e).toBeDefined();
+              expect(e.message).toBe('--');
 
               // Close (plugin only) & finish:
               (isWebSql) ? done() : db.close(done, done);
@@ -1082,11 +1090,11 @@ var mytests = function() {
         // From December 2019 SQLite crash report - fixed in 2020 ref:
         // - http://sqlite.1065341.n5.nabble.com/Crash-Bug-Report-tc109903.html
         // - https://github.com/xpbrew/cordova-sqlite-storage/issues/904
-        it(suiteName + 'RENAME table with view test [SQLite crash bug report December 2019]', function(done) {
+        it(suiteName + 'ALTER RENAME table with view test [SQLite crash bug report December 2019]', function(done) {
           if (isWebSql) pending('[TBD] NOT WORKING on (WebKit) Web SQL');
           if (!isWebSql && isAndroid && isImpl2) pending('[TBD] NOT WORKING on Android system android.database provider');
 
-          var dbname = 'RENAME-table-with-view-test.db';
+          var dbname = 'ALTER-RENAME-table-with-view-test.db';
           var db = openDatabase(dbname);
 
           db.transaction(function(tx) {
