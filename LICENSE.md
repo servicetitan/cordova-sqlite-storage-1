@@ -4,6 +4,14 @@
 
 MIT or Apache 2.0
 
+## browser platform
+
+MIT or Apache 2.0
+
+### sql.js
+
+MIT
+
 ## Android version
 
 MIT or Apache 2.0
