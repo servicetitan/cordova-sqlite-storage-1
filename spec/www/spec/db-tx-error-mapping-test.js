@@ -282,7 +282,7 @@ var mytests = function() {
               if (isWebSql && (isAppleMobileOS || (/Android [7-9]/.test(navigator.userAgent))))
                 // TBD incomplete input vs syntax error message IGNORED on Android 7.0(+) & iOS 12.0(+)
                 expect(error.message).toMatch(/could not prepare statement.*/);
-              else if (isWebSql && !isBrowser && !(/Android 4.[1-3]/.test(navigator.userAgent)))
+              else if (isWebSql && !isBrowser && !(/Android 4.[1-3]/.test(navigator.userAgent) && !(/Android 1/.test(navigator.userAgent))))
                 expect(error.message).toMatch(/could not prepare statement.*1 near \"VALUES\": syntax error/);
               else if (isWebSql && isBrowser)
                 expect(error.message).toMatch(/could not prepare statement.*1 incomplete input/);
