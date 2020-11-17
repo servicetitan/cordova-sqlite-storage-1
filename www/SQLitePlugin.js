@@ -917,7 +917,7 @@
       if (newArgs[0]) {
         newArgs[0].androidDatabaseProvider = 'system';
       }
-      SQLiteFactory.openDatabase.apply(SQLiteFactory, newArgs);
+      return SQLiteFactory.openDatabase.apply(SQLiteFactory, newArgs);
     },
     deleteDatabase: SQLiteFactory.deleteDatabase
   };
