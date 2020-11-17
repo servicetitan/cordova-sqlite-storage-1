@@ -909,7 +909,16 @@
       ]);
     },
     selfTest: SelfTest.start,
-    openDatabase: SQLiteFactory.openDatabase,
+    openDatabase: function() {
+      var newArgs = [];
+      for (var i = 0; i < arguments.length; i++) {
+        newArgs[i] = arguments[i];
+      }
+      if (newArgs[0]) {
+        newArgs[0].androidDatabaseProvider = 'system';
+      }
+      SQLiteFactory.openDatabase.apply(SQLiteFactory, newArgs);
+    },
     deleteDatabase: SQLiteFactory.deleteDatabase
   };
 
