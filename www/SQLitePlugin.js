@@ -32,6 +32,7 @@
       sqlError = new Error("an unknown error was returned: " + JSON.stringify(sqlError));
       sqlError.code = code;
     }
+    sqlError.message = sqlError.message + " [error code: " + code + "]";
     return sqlError;
   };
 
